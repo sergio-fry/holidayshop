@@ -1,4 +1,4 @@
-BibbleApi::Application.routes.draw do
+HerokuBase::Application.routes.draw do
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-BibbleApi::Application.load_tasks
+HerokuBase::Application.load_tasks
