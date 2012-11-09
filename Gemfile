@@ -52,3 +52,7 @@ end
 group :production do
   gem 'pg'
 end
+
+gem 'paperclip'
+gem 'activeadmin'
+gem 'roo'
