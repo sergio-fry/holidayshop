@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-HerokuBase::Application.load_tasks
+HolidayShop::Application.load_tasks

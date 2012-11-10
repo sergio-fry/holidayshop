@@ -2,51 +2,60 @@
 class Catalog < ActiveRecord::Base
   attr_accessible :file
   has_attached_file :file
+  after_commit :process!
 
-  class ProductsEnumerable
-    include Enumerable
-
-    def initialize(xls_path)
-      @xls_path = xls_path
+  class ProductRow
+    def initialize(attributes)
+      @attributes = attributes
     end
 
-    def each
-      sheet = Excel.new(@xls_path)
-
-      current_row_index = 0
-
-      while(current_row_index < 20)
-        row = sheet.row(current_row_index)
-
-        item = {
-          :title => row[0],
-          :origin_id => row[5].to_s,
-          :price => row[6].to_s.gsub(",", ".").gsub(/[^[:digit:]\.]+/, ""),
-        }
-        p item if self.class.valid_item?(item)
-
-        yield(item) if self.class.valid_item?(item)
-
-        current_row_index += 1
-      end
+    def attributes_for_product
+      {
+        :title => @attributes[0],
+        :origin_id => @attributes[5].to_s,
+        :price => @attributes[6].to_s.gsub(",", ".").gsub(/[^[:digit:]\.]+/, ""),
+      }
     end
 
-    private
-
-    def self.valid_item?(item)
-      item[:title].present? &&
-        item[:origin_id].present? && item[:origin_id] != "Номенклатура.Код" &&
-        item[:price].present? && (Float(item[:price]) rescue false)
+    def valid?()
+      attributes_for_product[:title].present? &&
+        attributes_for_product[:origin_id].present? && attributes_for_product[:origin_id] != "Номенклатура.Код" &&
+        attributes_for_product[:price].present? && (Float(attributes_for_product[:price]) rescue false)
     end
   end
 
   def products_attrs
-    ProductsEnumerable.new(self.file.path).to_a
+    Rails.cache.fetch "Catalog##{id}#products_attrs" do
+      result = []
+
+      sheet = Excel.new(self.file.path)
+      failed_tries_left = 20
+      current_row_index = 0
+      current_product_row = nil
+
+
+      while failed_tries_left > 0
+        current_product_row = product_row = ProductRow.new sheet.row(current_row_index)
+
+        if product_row.valid?
+          result << product_row.attributes_for_product if product_row.valid?
+          failed_tries_left = 20
+        else
+          failed_tries_left -= 1
+        end
+
+        current_row_index += 1
+      end
+
+      result
+    end
   end
 
   def process!
     products_attrs.each do |attrs|
       Product.create attrs
     end
+
+    products_attrs.size
   end
 end

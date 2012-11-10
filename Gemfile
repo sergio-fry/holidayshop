@@ -35,13 +35,16 @@ gem 'jquery-rails'
 # gem 'ruby-debug19', :require => 'ruby-debug'
 
 group :development do
-  gem 'factory_girl_rails'
   gem 'guard-rspec'
   gem 'guard-spork'
   gem 'heroku'
   gem 'rspec-rails'
   gem 'spork-rails'
   gem 'sqlite3'
+end
+
+group :development, :test do
+  gem 'factory_girl_rails'
 end
 
 group :test do
