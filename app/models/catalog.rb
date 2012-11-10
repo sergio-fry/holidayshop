@@ -37,7 +37,7 @@ class Catalog < ActiveRecord::Base
 
 
       while failed_tries_left > 0
-        current_product_row = product_row = ProductRow.new sheet.row(current_row_index)
+        current_product_row = product_row = ProductRow.new(sheet.row(current_row_index))
 
         if product_row.valid?
           result << product_row.attributes_for_product if product_row.valid?
