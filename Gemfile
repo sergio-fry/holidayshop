@@ -59,3 +59,4 @@ end
 gem 'paperclip'
 gem 'activeadmin'
 gem 'roo'
+gem 'delayed_job_active_record'

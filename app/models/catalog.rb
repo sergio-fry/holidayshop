@@ -2,7 +2,9 @@
 class Catalog < ActiveRecord::Base
   attr_accessible :file
   has_attached_file :file
-  after_commit :process!
+
+  BATCH_SIZE = 100
+  after_commit lambda { delay.process!(0, BATCH_SIZE) }
 
   class ProductRow
     def initialize(attributes)
@@ -51,11 +53,25 @@ class Catalog < ActiveRecord::Base
     end
   end
 
-  def process!
-    products_attrs.each do |attrs|
-      Product.create attrs
+  def process!(from = 0, num = nil)
+    return if products_attrs.size == 0
+
+    num = num.to_i > 0 ? num : products_attrs.size
+    to = from + num - 1
+
+    attributes_batch = products_attrs[from..to]
+
+    attributes_batch.each do |attrs|
+      product = Product.find_or_initialize_by_origin_id(attrs[:origin_id])
+      product.attributes = attrs
+      product.save
     end
 
-    products_attrs.size
+    # если есть еще необработанные строки
+    if products_attrs.size > (to + 1)
+      delay.process!(to + 1, num)
+    end
+
+    attributes_batch.size
   end
 end
