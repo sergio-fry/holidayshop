@@ -1,4 +1,7 @@
 HolidayShop::Application.routes.draw do
+  root :to => 'products#index'
+  match "products/page/:page" => "products#index"
+
   ActiveAdmin.routes(self)
 
   devise_for :admin_users, ActiveAdmin::Devise.config

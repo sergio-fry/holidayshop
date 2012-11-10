@@ -1,0 +1,9 @@
+<h1>Товары</h1>
+
+<%= paginate @products %>
+
+<% for product in @products %>
+  <p><%= product.title %></p>
+<% end %>
+
+<%= paginate @products %>
