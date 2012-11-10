@@ -60,5 +60,7 @@ module HolidayShop
       g.test_framework :rspec
       g.fixture_replacement :factory_girl
     end
+
+    config.assets.initialize_on_precompile = false
   end
 end
