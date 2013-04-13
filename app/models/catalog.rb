@@ -1,7 +1,7 @@
 # encoding: utf-8
 class Catalog < ActiveRecord::Base
   attr_accessible :file
-  has_attached_file :file
+  has_attached_file :file, :storage => :s3, :s3_credentials => File.join(Rails.root, "config/amazon_s3.yml"), :bucket => "holydayshop-#{Rails.env}"
 
   BATCH_SIZE = 100
   after_commit lambda { delay.process!(0, BATCH_SIZE) }
