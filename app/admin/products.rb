@@ -18,6 +18,7 @@ ActiveAdmin.register Product do
   form :html => { :enctype => "multipart/form-data" } do |f|
     f.inputs do
       f.input :title
+      f.input :origin_id
 
       f.inputs :file, :for => [:pictures, f.object.pictures.order(:created_at) + (1..3).map{ Picture.new } ], :class => "inputs gallery_picture" do |pf, i|
         if pf.object.new_record?
