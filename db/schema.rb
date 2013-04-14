@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130130043506) do
+ActiveRecord::Schema.define(:version => 20130414114805) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -91,6 +91,7 @@ ActiveRecord::Schema.define(:version => 20130130043506) do
     t.float    "price"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.float    "price2"
   end
 
   add_index "products", ["origin_id"], :name => "index_products_on_origin_id", :unique => true

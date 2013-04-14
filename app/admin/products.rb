@@ -11,6 +11,8 @@ ActiveAdmin.register Product do
         image_tag picture.file.url(:medium)
       end
     end
+    column "Закупочная цена", :price
+    column "Розничная цена", :price2
 
     default_actions
   end
@@ -29,8 +31,8 @@ ActiveAdmin.register Product do
       end
 
       f.input :description, :input_html => { :class => "rich-textarea" }
-      f.input :price
-
+      f.input :price, :label => "Закупочная цена"
+      f.input :price2, :label => "Розничная цена"
     end
 
     f.buttons
