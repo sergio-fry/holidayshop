@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121110142107) do
+ActiveRecord::Schema.define(:version => 20130130043506) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -70,6 +70,19 @@ ActiveRecord::Schema.define(:version => 20121110142107) do
   end
 
   add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
+
+  create_table "pictures", :force => true do |t|
+    t.string   "gallery_type"
+    t.integer  "gallery_id"
+    t.string   "file_file_name"
+    t.string   "file_content_type"
+    t.integer  "file_file_size"
+    t.datetime "file_updated_at"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
+
+  add_index "pictures", ["gallery_id", "gallery_type"], :name => "index_pictures_on_gallery_id_and_gallery_type"
 
   create_table "products", :force => true do |t|
     t.string   "title"
