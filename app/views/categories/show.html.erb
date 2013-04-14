@@ -1,0 +1,9 @@
+<h1><%= @category.title %></h1>
+
+<% for product in @category.products %>
+  <p>
+    <%= link_to product.title, product %>
+    <br /><%= image_tag(product.pictures.first.file.url(:small)) if product.pictures.present? %>
+    <br />Цена: <%= product_price(product) %>
+  </p>
+<% end %>

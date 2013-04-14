@@ -13,6 +13,7 @@ ActiveAdmin.register Product do
     end
     column "Закупочная цена", :price
     column "Розничная цена", :price2
+    column "Категория", :category
 
     default_actions
   end
@@ -21,12 +22,13 @@ ActiveAdmin.register Product do
     f.inputs do
       f.input :title
       f.input :origin_id
+      f.input :category, :label => "Категория"
 
       f.inputs :file, :for => [:pictures, f.object.pictures.order(:created_at) + (1..3).map{ Picture.new } ], :class => "inputs gallery_picture" do |pf, i|
         if pf.object.new_record?
           pf.inputs :file, :name => "новая картинка"
         else
-          pf.inputs :file, :name => f.template.image_tag(pf.object.file.url(:medium)) + raw("<br /><a href='#{pf.object.file.url(:original)}'>Оигинал</a> <a href='#' class='delete_button' data-id='#{pf.object.id}' data-index='#{i-1}'>Удалить</a>"), :style => "height: 160px; padding-bottom: 20px"
+          pf.inputs :file, :name => f.template.image_tag(pf.object.file.url(:small)) + raw("<br /><a href='#{pf.object.file.url(:original)}'>Оигинал</a> <a href='#' class='delete_button' data-id='#{pf.object.id}' data-index='#{i-1}'>Удалить</a>"), :style => "height: 200px; padding-bottom: 20px"
         end
       end
 

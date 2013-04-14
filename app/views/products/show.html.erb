@@ -1,7 +1,7 @@
 <h1><%= @product.title %></h1>
 <%= image_tag(@product.pictures.first.file.url(:medium)) if @product.pictures.present? %>
 <p>
-  Цена: <strong><%=  number_to_currency(@product.price2 || @product.price, :unit => "руб.") %></strong>
+  Цена: <strong><%=  product_price(@product) %></strong>
 </p>
 <p>
   <%=raw @product.description %>

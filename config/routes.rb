@@ -1,7 +1,11 @@
 HolidayShop::Application.routes.draw do
-  root :to => 'products#index'
+  get "categories/index"
+
+  get "categories/show"
+
+  root :to => 'categories#index'
   match "products/page/:page" => "products#index"
-  resources :products
+  resources :products, :categories, :only => [:index, :show]
 
   ActiveAdmin.routes(self)
 
