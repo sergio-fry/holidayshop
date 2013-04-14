@@ -3,7 +3,7 @@
 <%= paginate @products %>
 
 <% for product in @products %>
-  <p><%= product.title %></p>
+  <p><%= link_to product.title, product %></p>
 <% end %>
 
 <%= paginate @products %>

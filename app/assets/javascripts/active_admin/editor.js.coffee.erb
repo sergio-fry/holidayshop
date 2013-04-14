@@ -1,0 +1,16 @@
+#= require nicEdit/nicEdit
+$ ()->
+  $("textarea").setUniqId()
+
+  $("textarea.rich-textarea").each ()->
+    if $(this).hasClass("with-picture-upload")
+      new nicEditor({
+        iconsPath: "/assets/nicEdit/nicEditorIcons.gif",
+        buttonList : ['link','unlink', 'removeformat', 'upload', 'image', 'bold','italic','underline','ol','ul','fontSize','fontFormat', 'xhtml'],
+        uploadURI : "?",
+      }).panelInstance($(this).attr("id"))
+    else
+      new nicEditor({
+        iconsPath: "/assets/nicEdit/nicEditorIcons.gif",
+        buttonList : ['link','unlink', 'removeformat', 'image', 'bold','italic','underline','ol','ul','fontSize','fontFormat', 'xhtml'],
+      }).panelInstance($(this).attr("id"))
