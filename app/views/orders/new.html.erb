@@ -1,0 +1,27 @@
+<h1>Заказ товара '<%= @order.product.title %>'</h1>
+<%= image_tag(@order.product.pictures.first.file.url(:small)) if @order.product.pictures.present? %>
+<p>
+  Цена: <strong><%= product_price(@order.product) %></strong>
+</p>
+<%= form_for @order do |f| %>
+
+  <%= f.hidden_field :product_id %>
+  <p>
+    <%= f.label :name, "Ваше имя:" %>
+    <br /><%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :phone, "Телефон*:", :title => "Обязательное поле" %>
+    <br /><%= f.text_field :phone %><small>Обязательное поле</small>
+  </p>
+  <p>
+    <%= f.label :email, "Email:" %>
+    <br /><%= f.text_field :email %>
+  </p>
+  <p>
+    <%= f.label :address, "Адрес доставки:" %>
+    <br /><%= f.text_area :address %>
+  </p>
+  <%= f.submit 'Заказать' %>
+  <small>Мы свяжемся с Вами по телефону и договоримся об оплате и доставке товара</small>
+<% end %>

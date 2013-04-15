@@ -1,0 +1,27 @@
+<h1>Заказ отправлен! Спасибо.</h1>
+<p>В скором времени мы свяжемся с Вами и обсудим детали заказа</p>
+
+
+<h2>Вы заказали '<%= @order.product.title %>'</h2>
+<%= image_tag(@order.product.pictures.first.file.url(:small)) if @order.product.pictures.present? %>
+<p>
+  Цена: <strong><%= product_price(@order.product) %></strong>
+</p>
+
+<h2>Номер заказа: #<%= @order.id %></h2>
+<p>
+  Ваше имя:
+  <%= @order.name.presence || "пусто" %>
+</p>
+<p>
+  Телефон:
+  <%= @order.phone.presence || "пусто" %>
+</p>
+<p>
+  Email:
+  <%= @order.email.presence || "пусто" %>
+</p>
+<p>
+  Адрес доставки:
+  <%= @order.address.presence || "пусто" %>
+</p>

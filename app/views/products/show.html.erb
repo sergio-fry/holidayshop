@@ -1,7 +1,7 @@
 <h1><%= @product.title %></h1>
 <%= image_tag(@product.pictures.first.file.url(:medium)) if @product.pictures.present? %>
 <p>
-  Цена: <strong><%=  product_price(@product) %></strong>
+Цена: <strong><%= product_price(@product) %></strong> <%= link_to "Заказать", new_order_path(:order => { :product_id => @product.id }) %>
 </p>
 <p>
   <%=raw @product.description %>
