@@ -8,7 +8,7 @@ ActiveAdmin.register Product do
       picture = product.pictures.first
 
       if picture.present?
-        image_tag picture.file.url(:medium)
+        image_tag picture.file.url(:thumb)
       end
     end
     column "Закупочная цена", :price

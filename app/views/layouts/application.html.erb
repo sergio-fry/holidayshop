@@ -1,14 +1,43 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
   <title>Праздник дества - интернет-магазин</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
+  <%= stylesheet_link_tag "application", :media => "all" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
-<%= yield %>
+  <div class="container">
+    <div class="row">
+      <div class="span12">
+        <br />
+        <div class="row">
+          <div class="span12">
+            <span class="logo"><a href="/">Праздник детства</a></span>
+          </div>
+        </div>
+        <hr>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="span3 left-menu">
+        <h3>Разделы</h3>
+        <% for category in Category.all %>
+          <% if @category == category %>
+            <span class="category current"><%= category.title %></span>
+          <% else %>
+            <span class="category"><%= link_to(category.title, category) %></span>
+          <% end %>
+          <br />
+        <% end %>
+      </div>
+      <div class="span9">
+        <%= yield %>
+      </div>
+    </div>
+  </div>
 
 </body>
+<%= javascript_include_tag "application" %>
 </html>

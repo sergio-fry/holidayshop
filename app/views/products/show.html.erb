@@ -1,8 +1,19 @@
-<h1><%= @product.title %></h1>
-<%= image_tag(@product.pictures.first.file.url(:medium)) if @product.pictures.present? %>
-<p>
-Цена: <strong><%= product_price(@product) %></strong> <%= link_to "Заказать", new_order_path(:order => { :product_id => @product.id }) %>
-</p>
-<p>
-  <%=raw @product.description %>
-</p>
+<div class="row-fluid">
+  <div class="span12">
+    <h1><%= @product.title %></h1>
+    <%= image_tag(@product.pictures.first.file.url(:medium)) if @product.pictures.present? %>
+    <p>
+      Цена: <strong><%= product_price(@product) %></strong> <%= link_to "Заказать", new_order_path(:order => { :product_id => @product.id }), :class => "btn btn-primary btn-large" %>
+    </p>
+    <p>
+    <%=raw @product.description %>
+    </p>
+  </div>
+
+  <div class="span12">
+    <h2>Похожие товары</h2>
+    <%= render :partial => 'shared/products', :locals => { :products => (@product.category.products - [@product]) } %>
+    </p>
+  </div>
+</div>
+

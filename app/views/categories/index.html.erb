@@ -1,3 +1,4 @@
 <% for category in @categories %>
-  <%= link_to category.title, category %>
+  <h2><%= link_to category.title, category %></h2>
+  <%= render :partial => 'shared/products', :locals => { :products => category.products.limit(3) } %>
 <% end %>

@@ -8,6 +8,14 @@
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
  *
+ *= require bootstrap/css/bootstrap
+ *= require categories
+ *= require products
+ *= require orders
  *= require_self
- *= require_tree .
 */
+
+hr { border-top: 1px solid #aaa }
+.logo a { color: #000; font-size: xx-large }
+
+.left-menu .current { font-size: large }
