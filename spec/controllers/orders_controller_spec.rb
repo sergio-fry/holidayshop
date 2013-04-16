@@ -11,8 +11,10 @@ describe OrdersController do
 
   describe "GET 'show'" do
     it "returns http success" do
-      get 'show'
+      order = FactoryGirl.create(:order)
+      get 'show', :id => order.uuid
       response.should be_success
+      assigns(:order).should eq(order)
     end
   end
 

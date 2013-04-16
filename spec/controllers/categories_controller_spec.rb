@@ -11,8 +11,10 @@ describe CategoriesController do
 
   describe "GET 'show'" do
     it "returns http success" do
-      get 'show'
+      category = FactoryGirl.create(:category)
+      get 'show', :id => category.id
       response.should be_success
+      assigns(:category).should eq(category)
     end
   end
 

@@ -7,5 +7,6 @@ FactoryGirl.define do
     phone "MyString"
     email "MyString"
     address "MyString"
+    association :product
   end
 end

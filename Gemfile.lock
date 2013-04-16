@@ -298,6 +298,7 @@ DEPENDENCIES
   heroku
   jquery-rails
   jquery-turbolinks
+  nokogiri
   paperclip
   pg
   rails (= 3.2.2)
