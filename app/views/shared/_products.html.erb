@@ -2,7 +2,7 @@
   <% for product in products %>
     <div class="span4 product">
       <span class="title"><%= link_to product.title, product %></span>
-      <br /><span class="picture"><%= link_to(image_tag(product.pictures.first.file.url(:small)), product) if product.pictures.present? %></span>
+      <br /><span class="picture"><%= link_to(image_tag(product.pictures.first.file.url(:small), :class => "img-polaroid"), product) if product.pictures.present? %></span>
       <br /><br /><span class="price"><%= link_to product_price(product), new_order_path(:order => { :product_id => product.id }) %> <%= link_to "заказать", new_order_path(:order => { :product_id => product.id }), :class => "btn btn-primary" %></span>
     </div>
   <% end %>

@@ -1,12 +1,19 @@
 <div class="row-fluid">
   <div class="span12">
+    <ul class="breadcrumb">
+      <li><a href="/">Главная</a> <span class="divider">/</span></li>
+      <li><%= link_to @product.category.title, @product.category %> <span class="divider">/</span></li>
+      <li class="active"><%= @product.title %></li>
+    </ul>
     <h1><%= @product.title %></h1>
-    <%= image_tag(@product.pictures.first.file.url(:medium)) if @product.pictures.present? %>
+    <%= image_tag(@product.pictures.first.file.url(:medium), :class => "img-rounded") if @product.pictures.present? %>
+    <br />
+    <br />
     <p>
-      Цена: <strong><%= product_price(@product) %></strong> <%= link_to "Заказать", new_order_path(:order => { :product_id => @product.id }), :class => "btn btn-primary btn-large" %>
+      <%=raw @product.description %>
     </p>
     <p>
-    <%=raw @product.description %>
+      Цена: <strong><%= product_price(@product) %></strong> <%= link_to "Заказать", new_order_path(:order => { :product_id => @product.id }), :class => "btn btn-primary btn-large" %>
     </p>
   </div>
 
