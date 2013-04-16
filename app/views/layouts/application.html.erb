@@ -10,27 +10,27 @@
   <div class="container">
     <div class="row">
       <div class="span12">
-        <br />
-        <div class="row">
-          <div class="span12">
-            <span class="logo"><a href="/">Праздник детства</a></span>
+        <div class="navbar">
+          <div class="navbar-inner">
+            <a class="brand" href="/">Праздник дества</a>
+            <ul class="nav">
+              <%= content_tag :li, link_to("Условия доставки", :controller => :static, :action => :delivery), :class => (current_page?(:controller => :static, :action => :delivery) ? "active" : "") %>
+              <%= content_tag :li, link_to("Контакты", :controller => :static, :action => :about), :class => (current_page?(:controller => :static, :action => :about) ? "active" : "") %>
+            </ul>
           </div>
         </div>
-        <hr>
       </div>
     </div>
 
     <div class="row">
       <div class="span3 left-menu">
-        <h3>Разделы</h3>
-        <% for category in Category.all %>
-          <% if @category == category %>
-            <span class="category current"><%= category.title %></span>
-          <% else %>
-            <span class="category"><%= link_to(category.title, category) %></span>
+        <ul class="nav nav-list">
+          <li class="nav-header">Разделы</li>
+
+          <% for category in Category.all %>
+            <%= content_tag :li, link_to(category.title, category), :class => (@category == category ? "active" : "") %>
           <% end %>
-          <br />
-        <% end %>
+        </ul>
       </div>
       <div class="span9">
         <%= yield %>

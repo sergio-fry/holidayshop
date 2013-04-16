@@ -1,4 +1,8 @@
 HolidayShop::Application.routes.draw do
+  get "static/about"
+
+  get "static/delivery"
+
   get "categories/index"
 
   get "categories/show"
