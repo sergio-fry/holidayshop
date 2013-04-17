@@ -35,6 +35,18 @@ ActiveAdmin.register Product do
       f.input :description, :input_html => { :class => "rich-textarea" }
       f.input :price, :label => "Закупочная цена"
       f.input :price2, :label => "Розничная цена"
+
+      f.input :type_prefix, :label => "Тип"
+      f.input :vendor, :label => "Производитель"
+      f.input :vendor_code, :label => "Код производителя"
+      f.input :model, :label => "Модель"
+      f.input :country, :label => "Страна-производитель", :as => :string
+      f.input :width, :label => "Ширина, см"
+      f.input :length, :label => "Длина, см"
+      f.input :height, :label => "Высота, см"
+      f.input :weight, :label => "Вес, кг"
+      f.input :size, :label => "Размер"
+      f.input :age, :label => "Возраст"
     end
 
     f.buttons

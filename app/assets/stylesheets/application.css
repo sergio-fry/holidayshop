@@ -19,3 +19,5 @@ hr { border-top: 1px solid #aaa }
 .logo a { color: #000; font-size: xx-large }
 
 .left-menu .current { font-size: large }
+
+.products .product .title { display: block; overflow: hidden; text-overflow: ellipsis; width: 200px; height: 20px }
