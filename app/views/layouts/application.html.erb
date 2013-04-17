@@ -8,7 +8,8 @@
 <body>
 
   <div class="container">
-    <div class="row">
+
+    <div class="row-fluid">
       <div class="span12">
         <div class="navbar">
           <div class="navbar-inner">
@@ -22,7 +23,7 @@
       </div>
     </div>
 
-    <div class="row">
+    <div class="row-fluid">
       <div class="span3 left-menu">
         <ul class="nav nav-list">
           <li class="nav-header">Разделы</li>
@@ -34,6 +35,16 @@
       </div>
       <div class="span9">
         <%= yield %>
+      </div>
+    </div>
+    <div class="row-fluid">
+      <div class="span12 well">
+
+        Интренет-магазин <a href="/">Празник дества</a>, <%= Time.now.year %> год
+        <div class="pull-right">
+          <%= link_to("Условия доставки", :controller => :static, :action => :delivery) %>
+          <%= link_to("Контакты", :controller => :static, :action => :about) %>
+        </div>
       </div>
     </div>
   </div>
