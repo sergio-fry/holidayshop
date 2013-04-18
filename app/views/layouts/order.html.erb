@@ -12,20 +12,10 @@
     <%= render :partial => 'shared/header' %>
 
     <div class="row-fluid">
-      <div class="span3 left-menu">
-        <ul class="nav nav-list">
-          <li class="nav-header">Разделы</li>
-
-          <% for category in Category.all %>
-            <%= content_tag :li, link_to(category.title, category), :class => (@category == category ? "active" : "") %>
-          <% end %>
-        </ul>
-      </div>
-      <div class="span9">
+      <div class="span12">
         <%= yield %>
       </div>
     </div>
-
     <%= render :partial => 'shared/bottom' %>
   </div>
 

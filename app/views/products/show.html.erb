@@ -9,19 +9,12 @@
     <h1><%= @product.title %></h1>
 
     <div class="pull-right">
-      <%= image_tag(@product.pictures.first.file.url(:medium), :class => "img-rounded", :width => 680 ) if @product.pictures.present? %>
+      <%= image_tag(@product.pictures.first.file.url(:large), :class => "img-rounded", :width => 680 ) if @product.pictures.present? %>
 
       <br />
       <br />
 
-      <dl class="dl-horizontal">
-        <% Product::OPTIONS.each do |option, desc| %>
-          <% if @product[option].present? %>
-            <dt><%= desc %></dt>
-            <dd><%=raw @product[option] %></dd>
-          <% end %>
-        <% end %>
-      </dl>
+      <%= render :partial => 'shared/product_options', :locals => { :product => @product } %>
 
       <div class="pull-right">
         Цена: <strong><%= product_price(@product) %></strong> <%= link_to "Заказать", new_order_path(:order => { :product_id => @product.id }), :class => "btn btn-primary btn-large" %>

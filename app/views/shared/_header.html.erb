@@ -1,0 +1,13 @@
+<div class="row-fluid">
+  <div class="span12">
+    <div class="navbar">
+      <div class="navbar-inner">
+        <a class="brand" href="/">Праздник дества</a>
+        <ul class="nav">
+          <%= content_tag :li, link_to("Условия доставки", :controller => :static, :action => :delivery), :class => (current_page?(:controller => :static, :action => :delivery) ? "active" : "") %>
+          <%= content_tag :li, link_to("Контакты", :controller => :static, :action => :about), :class => (current_page?(:controller => :static, :action => :about) ? "active" : "") %>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,4 +1,6 @@
 class OrdersController < ApplicationController
+  layout 'order'
+
   def create
     @order = Order.new(params[:order])
 
