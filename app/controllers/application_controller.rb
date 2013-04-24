@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  before_filter :check_www, :check_heroku_app if Rails.env.production?
+  before_filter :check_heroku_app, :check_www if Rails.env.production?
 
   protect_from_forgery
 
