@@ -13,6 +13,6 @@ class Order < ActiveRecord::Base
   end
 
   def send_notification
-    OrdersNotifier.new_order(self)
+    OrdersNotifier.new_order(self).deliver
   end
 end
