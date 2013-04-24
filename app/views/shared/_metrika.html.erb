@@ -1,0 +1,39 @@
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+(function (d, w, c) {
+    (w[c] = w[c] || []).push(function() {
+        try {
+            w.yaCounter21083326 = new Ya.Metrika({id:21083326,
+                    webvisor:true,
+                    clickmap:true,
+                    trackLinks:true,
+                    accurateTrackBounce:true});
+        } catch(e) { }
+    });
+
+    var n = d.getElementsByTagName("script")[0],
+        s = d.createElement("script"),
+        f = function () { n.parentNode.insertBefore(s, n); };
+    s.type = "text/javascript";
+    s.async = true;
+    s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js";
+
+    if (w.opera == "[object Opera]") {
+        d.addEventListener("DOMContentLoaded", f, false);
+    } else { f(); }
+
+
+    var update_counter = function() {
+      // http://help.yandex.ru/metrika/?id=1108684
+      // yaCounterXXXXXX.hit(url, title, referer);
+
+      yaCounter21083326.hit(window.location.href);
+    }
+
+    d.addEventListener("page:load", update_counter);
+
+})(document, window, "yandex_metrika_callbacks");
+
+</script>
+<noscript><div><img src="//mc.yandex.ru/watch/21083326" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
