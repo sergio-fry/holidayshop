@@ -1,4 +1,7 @@
 # encoding: utf-8
+
+include ActionView::Helpers::SanitizeHelper
+
 class YandexMarketApi
   def self.category_xml(category)
     utf8_to_cp1251 "<category id='#{category.id}'>#{category.title}</category>"
@@ -6,6 +9,8 @@ class YandexMarketApi
 
   def self.generate_yml
     xml = <<-XML
+      <?xml version="1.0" encoding="windows-1251"?>
+      <!DOCTYPE yml_catalog SYSTEM "shops.dtd">
       <yml_catalog date="#{Time.now.strftime("%Y-%m-%d %H:%M")}">
         <shop>
           <name>#{utf8_to_cp1251('Интренет-магазин "Праздник детства"')}</name>
@@ -41,7 +46,7 @@ class YandexMarketApi
         <age>#{product.age}</age>
         <typePrefix>#{product.type_prefix}</typePrefix>
         <model>#{product.model}</model>
-        <description><![CDATA[ #{product.description} ]]></description>
+        <description><![CDATA[ #{strip_tags product.description} ]]></description>
       </offer>
     OFFER
   end
