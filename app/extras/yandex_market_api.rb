@@ -45,7 +45,7 @@ class YandexMarketApi
         <vendor>#{product.vendor}</vendor>
         <vendorCode>#{product.vendor_code}</vendorCode>
         <age>#{product.age}</age>
-        <description>#{strip_tags product.description}</description>
+        <description>#{strip_tags product.description.gsub("&nbsp;", " ")}</description>
       </offer>
     OFFER
   end
