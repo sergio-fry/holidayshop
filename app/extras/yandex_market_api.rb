@@ -44,7 +44,6 @@ class YandexMarketApi
         <vendor>#{product.vendor}</vendor>
         <vendorCode>#{product.vendor_code}</vendorCode>
         <age>#{product.age}</age>
-        <typePrefix>#{product.type_prefix}</typePrefix>
         <model>#{product.model}</model>
         <description><![CDATA[ #{strip_tags product.description} ]]></description>
       </offer>
