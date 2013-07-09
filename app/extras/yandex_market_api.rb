@@ -9,8 +9,8 @@ class YandexMarketApi
 
   def self.generate_yml
     xml = <<-XML
-      <?xml version="1.0" encoding="windows-1251"?>
-      <!DOCTYPE yml_catalog SYSTEM "shops.dtd">
+<?xml version="1.0" encoding="windows-1251"?>
+<!DOCTYPE yml_catalog SYSTEM "shops.dtd">
       <yml_catalog date="#{Time.now.strftime("%Y-%m-%d %H:%M")}">
         <shop>
           <name>#{utf8_to_cp1251('Интренет-магазин "Праздник детства"')}</name>
