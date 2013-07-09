@@ -32,20 +32,21 @@ class YandexMarketApi
 
   def self.product_xml(product)
     utf8_to_cp1251 <<-OFFER
-      <offer id='#{product.id}' available='true'>
+      <offer id='#{product.id}' available='true' bid='#{product.id}'>
         <url>http://www.prazdnik-magazin.ru/products/#{product.id}</url>
         <price>#{product.price2 || product.price}</price>
         <currencyId>RUR</currencyId>
         <categoryId>#{product.category_id}</categoryId>
         <picture>#{product.pictures.first.file.url(:large) rescue nil}</picture>
         <store>true</store>
+        <pickup>true</pickup>
         <delivery>true</delivery>
         <local_delivery_cost>#{((product.price2 || product.price) > 2000 ? 0 : 300) rescue 300}</local_delivery_cost>
         <name>#{product.title}</name>
-        <vendor>#{product.vendor}</vendor>
         <vendorCode>#{product.vendor_code}</vendorCode>
-        <age>#{product.age}</age>
         <description>#{strip_tags product.description.gsub("&nbsp;", " ")}</description>
+        <sales_notes>Необходима предоплата.</sales_notes>
+        <manufacturer_warranty>true</manufacturer_warranty>
       </offer>
     OFFER
   end
