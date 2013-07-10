@@ -1,10 +1,7 @@
 HolidayShop::Application.routes.draw do
-  get "static/about"
-
-  get "static/delivery"
+  get "static/:permalink" => "static#show", :as => :page
 
   get "categories/index"
-
   get "categories/show"
 
   root :to => 'categories#index'

@@ -4,8 +4,8 @@
       <div class="navbar-inner">
         <a class="brand" href="/">Праздник дества</a>
         <ul class="nav">
-          <%= content_tag :li, link_to("Условия доставки", :controller => :static, :action => :delivery), :class => (current_page?(:controller => :static, :action => :delivery) ? "active" : "") %>
-          <%= content_tag :li, link_to("Контакты", :controller => :static, :action => :about), :class => (current_page?(:controller => :static, :action => :about) ? "active" : "") %>
+          <%= content_tag :li, link_to("Условия доставки", page_path(:delivery)), :class => (current_page?(page_path(:delivery)) ? "active" : "") %>
+          <%= content_tag :li, link_to("Контакты", page_path(:about)), :class => (current_page?(page_path(:about)) ? "active" : "") %>
         </ul>
       </div>
     </div>
