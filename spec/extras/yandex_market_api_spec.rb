@@ -53,8 +53,24 @@ describe YandexMarketApi do
       Nokogiri.XML(YandexMarketApi.product_xml(@product)).root["id"].to_i.should eq(@product.id)
     end
 
-    it "should include title"
-    it "should include price"
-    it "should include category_id"
+    it "should remove CAPS from title" do
+      @product.update_attributes!(:title => "Titlte with CAPS")
+      name = Nokogiri.XML(YandexMarketApi.product_xml(@product)).xpath("//offer/name").text
+      name.should_not include("CAPS")
+
+      @product.update_attributes!(:title => "Titlte with ЗАГОЛОВОК")
+      name = Nokogiri.XML(YandexMarketApi.product_xml(@product).encode("UTF-8")).xpath("//offer/name").text
+      name.should_not include("ЗАГОЛОВОК")
+    end
+
+    it "should remove CAPS from description" do
+      @product.update_attributes!(:description => "Description with CAPS")
+      description = Nokogiri.XML(YandexMarketApi.product_xml(@product)).xpath("//offer/description").text
+      description.should_not include("CAPS")
+
+      @product.update_attributes!(:description => "Titlte with ЗАГОЛОВОК")
+      description = Nokogiri.XML(YandexMarketApi.product_xml(@product).encode("UTF-8")).xpath("//offer/description").text
+      description.should_not include("ЗАГОЛОВОК")
+    end
   end
 end

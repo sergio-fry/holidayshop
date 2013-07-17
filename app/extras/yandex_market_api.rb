@@ -42,9 +42,9 @@ class YandexMarketApi
         <pickup>true</pickup>
         <delivery>true</delivery>
         <local_delivery_cost>#{((product.price2 || product.price) > 2000 ? 0 : 300) rescue 300}</local_delivery_cost>
-        <name>#{product.title}</name>
+        <name>#{product.title.mb_chars.titleize}</name>
         <vendorCode>#{product.vendor_code}</vendorCode>
-        <description>#{strip_tags product.description.gsub("&nbsp;", " ")}</description>
+        <description>#{strip_tags(product.description.to_s.gsub("&nbsp;", " ")).mb_chars.capitalize}</description>
         <sales_notes>Необходима предоплата.</sales_notes>
         <manufacturer_warranty>true</manufacturer_warranty>
       </offer>
@@ -54,7 +54,6 @@ class YandexMarketApi
   def self.utf8_to_cp1251(str)
     str.encode(to="WINDOWS-1251", from="UTF-8", :invalid => :replace, :undef => :replace, :replace => "")
   end
-
 end
 
 example = <<SAMPLE
