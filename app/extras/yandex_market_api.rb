@@ -33,7 +33,7 @@ class YandexMarketApi
   def self.product_xml(product)
     utf8_to_cp1251 <<-OFFER
       <offer id='#{product.id}' available='true' bid='#{product.id}'>
-        <url>http://www.prazdnik-magazin.ru/orders/new?order%5Bproduct_id%5D=#{product.id}</url>
+        <url>#{ URI::encode("http://www.prazdnik-magazin.ru/orders/new?order[product_id]=#{product.id}") }</url>
         <price>#{product.price2 || product.price}</price>
         <currencyId>RUR</currencyId>
         <categoryId>#{product.category_id}</categoryId>
