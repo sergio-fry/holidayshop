@@ -1,3 +1,5 @@
+<%= content_for :title, "#{@product.title}. Интернет-магизин" %>
+
 <div class="row-fluid">
   <div class="span12">
     <ul class="breadcrumb">
@@ -9,7 +11,7 @@
     <h1><%= @product.title %></h1>
 
     <div class="pull-right">
-      <%= image_tag(@product.pictures.first.file.url(:large), :class => "img-rounded", :width => 680 ) if @product.pictures.present? %>
+      <%= image_tag(@product.pictures.first.file.url(:large), :class => "img-rounded", :width => 680, :alt => @product.title, :title => @product.title ) if @product.pictures.present? %>
 
       <br />
       <br />
