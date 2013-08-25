@@ -17,7 +17,7 @@
       <%= render :partial => 'shared/product_options', :locals => { :product => @product } %>
 
       <div class="pull-right">
-        Цена: <strong><%= product_price(@product) %></strong> <%= link_to "Заказать", new_order_path(:order => { :product_id => @product.id }), :class => "btn btn-primary btn-large" %>
+        Цена: <strong><%= product_price(@product) %></strong> <%= link_to "Заказать", new_order_path(:product => @product.id), :class => "btn btn-primary btn-large" %>
       </div>
     </div>
   </div>

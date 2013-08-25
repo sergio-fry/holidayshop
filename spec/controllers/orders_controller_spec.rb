@@ -4,7 +4,8 @@ describe OrdersController do
 
   describe "GET 'new'" do
     it "returns http success" do
-      get 'new'
+      product = FactoryGirl.create(:product)
+      get 'new', :product => product.id
       response.should be_success
     end
   end

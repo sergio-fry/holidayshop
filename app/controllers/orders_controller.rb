@@ -12,7 +12,8 @@ class OrdersController < ApplicationController
   end
 
   def new
-    @order = Order.new(params[:order])
+    @product = Product.find(params[:product])
+    @order = Order.new((params[:order] || {}).merge(:product_id => @product.id))
   end
 
   def show
